@@ -20,6 +20,7 @@ import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.training.logic.CalculatorGame;
+import org.training.model.ShapeAnimations;
 
 import java.util.Random;
 
@@ -330,53 +331,22 @@ public class GraphicalUserInterface extends Application {
         /**
          * GridPane for the Circles
          */
-        GridPane rotateGridPane = new GridPane();
-        rotateGridPane.setPadding(new Insets(20, 20, 20, 20));
-        rotateGridPane.setHgap(10);
-        rotateGridPane.setVgap(10);
-        rotateGridPane.setAlignment(Pos.CENTER);
+        GridPane animationGridPane = new GridPane();
+        animationGridPane.setPadding(new Insets(20, 20, 20, 20));
+        animationGridPane.setHgap(10);
+        animationGridPane.setVgap(10);
+        animationGridPane.setAlignment(Pos.CENTER);
 
-        //Creating a hexagon
-        Polygon hexagon = new Polygon();
+        ShapeAnimations animations = new ShapeAnimations();
+        animations.playAnimationOne();
 
-        //Adding coordinates to the hexagon
-        hexagon.getPoints().addAll(200.0, 50.0,
-                400.0, 50.0,
-                450.0, 150.0,
-                400.0, 250.0,
-                200.0, 250.0,
-                150.0, 150.0);
-        //Setting the fill color for the hexagon
-        hexagon.setFill(Color.BLUE);
-
-        //Creating a rotate transition
-        RotateTransition rotateTransition = new RotateTransition();
-
-        //Setting the duration for the transition
-        rotateTransition.setDuration(Duration.millis(1000));
-
-        //Setting the node for the transition
-        rotateTransition.setNode(hexagon);
-
-        //Setting the angle of the rotation
-        rotateTransition.setByAngle(360);
-
-        //Setting the cycle count for the transition
-        rotateTransition.setCycleCount(50);
-
-        //Setting auto reverse value to false
-        rotateTransition.setAutoReverse(false);
-
-        //Playing the animation
-        rotateTransition.play();
-
-        //Creating a Group object
-        Group root = new Group(hexagon);
-
-        rotateGridPane.add(root, 0, 0);
+        Group g1 = animations.animationOne();
 
 
-        tab2GridPane.add(rotateGridPane, 0, 0);
+        animationGridPane.add(g1, 0, 0);
+
+
+        tab2GridPane.add(animationGridPane, 0, 0);
 
         /**
          * add the tabs
